@@ -329,6 +329,7 @@ const generateResponse = async (intent, branch, msg) => {
 // ─── Main Chat Controller ─────────────────────────────────────────────────────
 exports.processChat = async (req, res) => {
   try {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     const { message, sessionId = 'anon' } = req.body;
 
     if (!message || message.trim().length === 0) {

@@ -134,6 +134,10 @@ export default function ChatWindow({ onBack, initialMessage }) {
 
   // Boot message
   useEffect(() => {
+    // Wake up Render backend on load
+    const backendUrl = import.meta.env.VITE_API_URL || 'https://gec-backend-l0ep.onrender.com'
+    fetch(`${backendUrl}/health`).catch(() => {})
+
     const boot = {
       id: 'boot', sender:'bot', timestamp:new Date(),
       category:'greeting',
