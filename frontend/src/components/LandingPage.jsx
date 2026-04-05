@@ -57,7 +57,8 @@ export default function LandingPage({ onStartChat }) {
   const [backendOnline, setBackendOnline] = useState(null)
 
   useEffect(() => {
-    fetch('/api/college-info')
+    const backendUrl = import.meta.env.VITE_API_URL || 'https://gec-backend-l0ep.onrender.com'
+    fetch(`${backendUrl}/api/college-info`)
       .then(r => r.ok ? setBackendOnline(true) : setBackendOnline(false))
       .catch(() => setBackendOnline(false))
     getNotices({ limit:4 }).then(r => setNotices(r.data || [])).catch(() => {})
